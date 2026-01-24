@@ -9,6 +9,11 @@ def ouvrir_inventaire(path="inventaires.json"):
         return {}
 
 
+def ecrire_inventaire(inventaire, path="inventaires.json"):
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(inventaire, f, ensure_ascii=False, indent=4)
+
+
 def afficher_inventaire(inventaire):
     print("Inventaire des fruits :")
     for fruit, quantite in inventaire.items():
@@ -32,7 +37,9 @@ def vendre(inventaire, fruit, quantite):
 
 
 if __name__ == "__main__":
+    inventaires = ouvrir_inventaire()
     afficher_inventaire(inventaires)
     recolter(inventaires, "mangues", 20)
     vendre(inventaires, "bananes", 50)
     afficher_inventaire(inventaires)
+    ecrire_inventaire(inventaires)
