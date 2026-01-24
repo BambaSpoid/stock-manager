@@ -1,10 +1,12 @@
-inventaires = {
-    "bananes": 120,
-    "mangues": 85,
-    "ananas": 45,
-    "noix de coco": 60,
-    "papayes": 30,
-}
+import json
+
+
+def ouvrir_inventaire(path="inventaires.json"):
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
 
 
 def afficher_inventaire(inventaire):
